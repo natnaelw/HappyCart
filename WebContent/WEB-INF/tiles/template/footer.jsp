@@ -1,0 +1,1 @@
+<p style="text-align: center; ">Copyright &copy; 2015 - All Rights Reserved - <a href="#">HC Dev Team</a></p>
