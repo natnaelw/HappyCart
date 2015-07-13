@@ -19,7 +19,9 @@
 <div id="main">
 	
 	<h2 class="title text-center">Enjoy Our New Products...</h2>
-
+ <div class="panel panel-default">
+                <div class="panel-heading">New Items</div>
+                <div class="panel-body">
 		<c:forEach items="${products}" var="item">
 		<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
 					<div class="thumbnail">
@@ -37,8 +39,36 @@
 				</div>
 				</div>
 		</c:forEach>
-	</ul>
+		</div>
+		</div>
 </div>
+
+
+ <div class="panel panel-default">
+                <div class="panel-heading">Summer Sale</div>
+                <div class="panel-body">
+		<c:forEach items="${products}" var="item">
+		<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
+					<div class="thumbnail">
+						<div class="caption">
+           <a href=" <spring:url value="/products/product/${item.id}" /> "><img
+					src="<spring:url value="/images/product/${item.productImage}" />" /> </a>
+				<h4>$${item.unitPrice}</h4>
+				<p>${item.name}</p>
+				<p>
+						<input type="button" class="btn-primary"
+						onclick="addToCart(${item.id},1,'add')"
+						value = "<spring:message code="cart.label.addtocart" />" />
+				</p>
+				</div>
+				</div>
+				</div>
+		</c:forEach>
+		</div>
+		</div>
+</div>
+
+
 <div id="dialog" title="Cart Notification" style="display: none;color: blue;">
 		<p>
 			<spring:message code="cart.dialog.message" />

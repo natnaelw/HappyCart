@@ -20,9 +20,9 @@
 	<c:choose>
 		<c:when test="${cartsize == 0 }">
 			<div>
-				<h2>
+				<h4>
 					<spring:message code="cart.label.productnotfound"></spring:message>
-				</h2>
+				</h4>
 			</div>
 		</c:when>
 	<c:otherwise>
