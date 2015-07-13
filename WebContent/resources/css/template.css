@@ -1,0 +1,57 @@
+fieldset{
+	border-radius: 1px;
+	width: 500px;
+	height: 400px;
+	margin-top: 5px;
+	margin-left: 60px;
+	border: 1px solid #6E6E6E;
+	margin-bottom: 50px;
+}
+
+.formlabel{
+	display: block;
+	margin-left: 600px;
+	min-width: 100px;
+	float: left;
+	margin-top:4px;
+	clear: left;
+}
+.formselect{
+display: inline-block;
+	float: left;
+	margin-top:10px;
+	min-width: 300px;
+	margin-left: 20px;
+}
+.forminput{
+	display: inline-block;
+/* 	float: left; */
+/* 	margin-top:10px; */
+	min-width: 175px;
+
+}
+.formerror{
+	display: inline-block;
+	color: red;
+	border: 1px solid red;
+	background-color: #F6CED8;
+	border-radius: 3px;
+	min-width: 300px;
+	clear: right;
+	margin-top: 4px;
+	margin-left: 4px;
+	min-height: 20px;
+}
+button{
+	display:block;
+	clear:both;
+	margin-left: 20px;
+	margin-bottom: 30px;
+}
+
+legend{
+	background-color: #E6E6E6;
+	border-radius: 1px;
+	border: 1px solid #6E6E6E;
+	padding: 1px;
+}

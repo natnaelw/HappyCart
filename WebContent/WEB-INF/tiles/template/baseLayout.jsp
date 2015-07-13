@@ -14,41 +14,43 @@
 <title><tiles:insertAttribute name="title" /></title>
 
 
-
-<link href="resources/css/template.css" rel="stylesheet">
-
 </head>
 
 <body>
-
+<img src="<c:url value="/resources/images/HCLogo1.jpg"></c:url>" alt="image"  style = "width:25%"/>
+<hr width=100%>
+<br/>
 	<div class="container">
-		<div class="header">
-			<ul class="nav nav-pills pull-right">
+		<div class="header" >
+			<ul class="nav nav-pills pull-left">
 				<tiles:insertAttribute name="navigation" />
 			</ul>
-			<img src="<c:url value="/resource/images/HappyCart.jpg"></c:url>" alt="image"  style = "width:15%"/>
 		</div>
 
 
 <div id="header">
-			<form id="searchBy" action="/searchByCategory" method="get" >
+<ul class="nav nav-pills pull-right">
+			<form id="searchBy" action="/searchByCategory" method="get"  >
 		<p >
 			<label for="searchBy"><spring:message
 					code="Search.product.category.label" text="Category" />: </label> 
 			<select id="categoryId" name="categoryId">
 				<option value="None">--Select--</option>
-<%-- 				<c:forEach var="category" items="${categories}"> --%>
-<%-- 					<option value="${category.id}">${category.name}</option> --%>
-<%-- 				</c:forEach> --%>
+				<c:forEach var="category" items="${categories}">
+					<option value="${category.id}">${category.name}</option>
+				</c:forEach>
 			</select> <input type="submit" id="searchSubmit" value="Search" tabindex="5">
 
 		</p>
 
 	</form>
 
-
+</ul>
 		</div>
-
+		<div>
+		<p><br/></p>
+		</div>
+<hr width=100%>
 <!-- 		<div class="jumbotron"> -->
 <!-- 			<h1> -->
 <%-- 				<tiles:insertAttribute name="heading" /> --%>
@@ -61,7 +63,7 @@
 		<div class="row">
 			<tiles:insertAttribute name="body" />
 		</div>
-
+<hr width=100%>
 		<div class="footer">
 			<tiles:insertAttribute name="footer" />
 		</div>

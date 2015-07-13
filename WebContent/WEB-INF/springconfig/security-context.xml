@@ -30,14 +30,9 @@
 		<!-- always-use-default-target overrides where login was triggered -->
 		<!-- logout-url renames j_security_logout URL -->
 
-<!-- Comment out login-page through logoinfailed for BASIC -->
-
-<!-- 	<security:form-login /> -->
-<!-- 	 <security:logout /> -->
-
 
 		<security:form-login login-page="/login" 
-               default-target-url="/usersHome"    
+               default-target-url="/vendorsHome"    
                always-use-default-target="false"   
                authentication-failure-url="/loginfailed"/>
         <security:logout logout-success-url="/logout"  logout-url= "/doLogout"/>

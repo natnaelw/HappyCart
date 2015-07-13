@@ -25,4 +25,9 @@ public class LoginController {
 	public String logout(Model model) {
  		return "login";
  	}
+	
+	@RequestMapping(value="/vendorsHome", method = RequestMethod.GET)
+	public String vendorHome(Model model) {
+ 		return "vendorsHome";
+ 	}
 }

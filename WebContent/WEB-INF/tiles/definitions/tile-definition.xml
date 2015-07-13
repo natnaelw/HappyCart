@@ -2,6 +2,10 @@
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
 	"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
+
+<!-- Note -->
+<!-- Remember always to make definition name different from title name to avoid exception, this seems tiles bug -->
+
 <tiles-definitions>
 	
 	<definition name="baseLayout" template="/WEB-INF/tiles/template/baseLayout.jsp">
@@ -19,5 +23,56 @@
  		<put-attribute name="body" value="/WEB-INF/views/welcome.jsp" />
 	</definition>
 	
+	<definition name="signup" extends="baseLayout">
+		<put-attribute name="title" value="Signup" />
+		<put-attribute name="heading" value="HappyCart" />
+ 		<put-attribute name="body" value="/WEB-INF/views/signup.jsp" />
+	</definition>
+	
+		<definition name="login" extends="baseLayout">
+		<put-attribute name="title" value="Login" />
+		<put-attribute name="heading" value="Login" />
+		<put-attribute name="body" value="/WEB-INF/views/login.jsp" />
+	</definition>
+	
+	<definition name="vendorsHome" extends="baseLayout">
+		<put-attribute name="title" value="VendorsHome" />
+		<put-attribute name="heading" value="vendorsHome" />
+		<put-attribute name="body" value="/WEB-INF/views/vendorsHome.jsp" />
+	</definition>
+
+<definition name="payment" extends="baseLayout">
+		<put-attribute name="title" value="Payment" />
+		<put-attribute name="heading" value="Payment" />
+		<put-attribute name="body" value="/WEB-INF/views/payment.jsp" />
+	</definition>
+	
+	<definition name="messagePage" extends="baseLayout">
+		<put-attribute name="title" value="Message" />
+		<put-attribute name="heading" value="Message" />
+		<put-attribute name="body" value="/WEB-INF/views/messagePage.jsp" />
+	</definition>
 	 	
+	 		<definition name="products" extends="baseLayout">
+		<put-attribute name="title" value="Products" />
+		<put-attribute name="heading" value="Message" />
+	<put-attribute name="body" value="/WEB-INF/views/products.jsp" />
+	</definition>
+	
+		<definition name="cart" extends="baseLayout">
+		<put-attribute name="title" value="Cart" />
+		<put-attribute name="heading" value="Cart" />
+	<put-attribute name="body" value="/WEB-INF/views/cart.jsp" />
+	</definition>
+	<definition name="vendorHome" extends="baseLayout">
+		<put-attribute name="title" value="Vendor" />
+		<put-attribute name="heading" value="Vendor" />
+		<put-attribute name="body" value="/WEB-INF/views/vendorHome.jsp" />
+	</definition>
+	
+	<definition name="vendorProduct" extends="baseLayout">
+		<put-attribute name="title" value="Product" />
+		<put-attribute name="heading" value="VendorProduct" />
+		<put-attribute name="body" value="/WEB-INF/views/vendorProduct.jsp" />
+	</definition>
 </tiles-definitions>

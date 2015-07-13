@@ -7,6 +7,18 @@
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 <title>Welcome</title>
 </head>
+
+<p style="color: red">
+	<c:choose>
+			<c:when test="${not empty message}">
+         Error(s)!
+         </c:when>
+		</c:choose>
+		<c:if test="${message != null}">
+			${message}
+		</c:if>
+</p>
+		<br>
 <body>
 	<section>
 		<div class="jumbotron">
