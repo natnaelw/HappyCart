@@ -75,4 +75,35 @@
 		<put-attribute name="heading" value="VendorProduct" />
 		<put-attribute name="body" value="/WEB-INF/views/vendorProduct.jsp" />
 	</definition>
+	
+	<definition name="admin" extends="baseLayout">
+		<put-attribute name="title" value="Admin" />
+		<put-attribute name="heading" value="Admin" />
+		<put-attribute name="body" value="/WEB-INF/views/admin.jsp" />
+	</definition>
+	
+	<definition name="addCategory" extends="baseLayout">
+		<put-attribute name="title" value="AddCategory" />
+		<put-attribute name="heading" value="AddCategory" />
+		<put-attribute name="body" value="/WEB-INF/views/addCategory.jsp" />
+	</definition>
+	
+	<definition name="addsubCategory" extends="baseLayout">
+		<put-attribute name="title" value="AddSubCategory" />
+		<put-attribute name="heading" value="AddSubCategory" />
+		<put-attribute name="body" value="/WEB-INF/views/addsubcategory.jsp" />
+	</definition>
+	
+	<definition name="listCategory" extends="baseLayout">
+		<put-attribute name="title" value="ListCategory" />
+		<put-attribute name="heading" value="ListCategory" />
+		<put-attribute name="body" value="/WEB-INF/views/listCategory.jsp" />
+	</definition>
+	
+	<definition name="listsubcategory" extends="baseLayout">
+		<put-attribute name="title" value="ListCategory" />
+		<put-attribute name="heading" value="ListCategory" />
+		<put-attribute name="body" value="/WEB-INF/views/listsubcategory.jsp" />
+	</definition>
+	
 </tiles-definitions>

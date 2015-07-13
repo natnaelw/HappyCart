@@ -4,6 +4,7 @@
 <li><a href="<spring:url value="/search/"/>">Search</a></li>
 <li><a href="<spring:url value="/products/"/>">Products</a></li>
 <li><a href="<spring:url value="/cart/"/>">Shopping Cart</a></li>
+<li><a href="<spring:url value="/admin/"/>">Admin</a></li>
 <li><a href="<spring:url value="/vendor/"/>">Vendor</a></li>
 <li><spring:url value=""/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

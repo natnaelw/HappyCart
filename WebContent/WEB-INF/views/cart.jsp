@@ -1,17 +1,20 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+ <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+ 
 
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.11.4/themes/ui-lightness/jquery-ui.css">
+<link rel="stylesheet" 	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script type="text/javascript" src="<spring:url value="/resources/js/cart.js" />" ></script>
+<link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
+
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script type="text/javascript"
-	src="<spring:url value="/javascript/cart.js" />"></script>
-<div id="main">
+<body>
+<div >
 	<c:set var="cartsize" value="${fn:length(cart.cartItems)}" />
 
 	<c:choose>
@@ -104,3 +107,4 @@
 		<p>You have checkout your cart. Thank you!</p>
 	</div>
 </div>
+</body>

@@ -11,10 +11,8 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<li><a href="<spring:url value="/category/add"/>">Add cathegory</a></li>
-				<li><a href="<spring:url value="/subcategory/add"/>">Add  subcathegory</a></li>
-				<li><a href="<spring:url value="/product/add"/>">Add productr</a></li>
-				
+				<li><a href="<spring:url value="/category/add"/>">Manage Category</a></li>
+				<li><a href="<spring:url value="/subcategory/add"/>">Manage  SubCategory</a></li>				
 			</div>	 
 		</div>	
 	</section>

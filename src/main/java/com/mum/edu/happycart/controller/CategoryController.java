@@ -35,7 +35,7 @@ public class CategoryController {
 		public String getProduct(Category category , Model model)
 		{
 		model.addAttribute("category",category);
-		return "addProduct";
+		return "addCategory";
 	}
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public String saveCategory(@Valid Category category, BindingResult rt,BindingResult br, RedirectAttributes ra){
