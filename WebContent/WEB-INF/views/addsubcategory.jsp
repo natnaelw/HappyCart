@@ -15,29 +15,32 @@
 </head>
 <body>
 	<section>
-		<div class="jumbotron">
-			<div class="container">
-				<div class="form">
+ <div class="panel panel-default">
+                <div class="panel-heading"><h3>Add SubCategory</h3></div>
+                <div class="panel-body">
 					<form:form class="cmxform form-horizontal tasi-form"
 						id="signupForm" commandName="subcategory" method="post">
-						<div class="form-group ">
-							<h2>Add SubCategory</h2>
 
-								<label class="control-label col-lg-2" for="id">Category</label>
-								
-									<form:select class="form-control" path="category.id">
+					    <div class= "caption">
+                            <div class="form-group">
+							 <div class="form-group">
+							 
+                                <label class="col-sm-2 control-label" for="category">Category</label>
+                                <div class="col-xs-4">
+                                    <form:select class="form-control" path="category.id" id="category">
 										<form:options itemLabel="name" itemValue="id"
 											items="${category}"></form:options>
 									</form:select>
-									<form:errors path="category" cssClass="error" />
+                                </div>
+                            </div>
 
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="subcategory">SubCategory</label>
+                                <div class="col-xs-4">
+                                    <form:input type="text" id ="subcategory" path="name" class="form-control"/>
+                                </div>
+                            </div>
 
-							<label for=" name" class="control-label col-lg-2">Name</label>
-								<form:input required="" class=" form-control" type="text"
-									path="name" id="inputName" placeholder="name" />
-								<form:errors path="name" cssClass="error" />
-
-						</div>
 						<div class="form-group">
 							<div class="col-lg-offset-2 col-lg-10">
 								<button class="btn btn-danger" type="submit">Save</button>
@@ -46,10 +49,11 @@
 
 							</div>
 						</div>
+						</div>
+						</div>
 					</form:form>
 				</div>
 			</div>
-		</div>
 	</section>
 
 </body>
