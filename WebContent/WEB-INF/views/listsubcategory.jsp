@@ -19,7 +19,7 @@
                 <thead>
                 
                     <tr>
-                        <th>#</th>
+                        <th>No.</th>
                         <th><i class="fa fa-credit-card"></i> Name</th>
                         
                     </tr>
@@ -32,15 +32,12 @@
                                     ${count}
                                     <c:set var="count" value="${count + 1}" scope="page"/></a></td>
                             <td >${subcategory.name}</td>
-                           
-                            
-                            
                         </tr>
                     </c:forEach>
                     
                 
             </table>
-             <li><a href="<spring:url value="/admin"/>">BACK TO Admin</a></li>
+<%--              <li><a href="<spring:url value="/admin"/>">BACK TO Admin</a></li> --%>
 	</section>
 	
 </body>

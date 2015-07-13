@@ -19,7 +19,7 @@
                 <thead>
                 
                     <tr>
-                        <th>#</th>
+                        <th>No.</th>
                         <th><i class="fa fa-credit-card"></i> Name</th>
                         
                     </tr>
@@ -39,7 +39,7 @@
                     </c:forEach>
                 
             </table>
-            <li><a href="<spring:url value="/admin"/>">BACK TO Admin</a></li>
+<%--             <li><a href="<spring:url value="/admin"/>">BACK TO Admin</a></li> --%>
 	</section>
 	
 </body>
