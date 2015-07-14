@@ -67,8 +67,10 @@ public class Cart implements Serializable{
 
 	public void updateGrandTotal() {
 		total = new Double(0);
+		System.out.println("-$$$---"+total);
 		for (CartItem item : cartItems.values()) {
 			total = total + item.getTotalPrice();
+			System.out.println("----"+total+"---"+item);
 		}
 		
 		total = (double) Math.round(total * 100) / 100;

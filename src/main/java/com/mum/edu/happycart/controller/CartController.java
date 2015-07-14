@@ -56,24 +56,24 @@ public class CartController {
 			@RequestParam("quantity") int quantity,
 			@RequestParam("mode") String mode, Model model,
 			HttpServletRequest request) {
+		
 		System.out.println("---Request Reached Cart Controller---");
 
 
 		String cartId = request.getSession(true).getId();
 		Cart cart = cartService.read(cartId);
-
 		if (cart == null) {
 			cart = cartService.create(new Cart(cartId));
 		}
-
 		Product product = productService.getProductById(productId);
 		if (product == null) {
 			System.out.println("Product Not Found!");
 		}
-
 		CartItem item = new CartItem(product);
-		item.setQuantity(quantity);
+		//item.setQuantity(quantity);
+		System.out.println("Controller item before" + item.getTotalPrice());
 		cart.addCartItem(item, mode);
+		System.out.println("Controller item" + item.getTotalPrice());
 		cartService.update(cartId, cart);
 
 	}

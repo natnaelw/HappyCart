@@ -13,3 +13,17 @@ var addToCart = function(productId, quantity, mode){
 	});
 }
 
+
+var removeFromCart = function(rowid, productId){
+	$.ajax({
+		url:"/happyCart/cart/remove/"+productId,
+		type: "DELETE",
+		dataType: "json",
+		contentType: "application/json",
+		success:function(success){
+			location.reload();
+		},
+		error:function(error){
+		}
+	});
+}
