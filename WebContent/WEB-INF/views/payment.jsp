@@ -147,7 +147,7 @@ legend{
 			<label class="" for="amount"><spring:message
 					code="creditCard.form.amount.label" /></label>
 			<div class="">
-				<form:input id="amount" path="amount" />
+				<form:input id="amount" path="amount"  value="${amountDue}" readonly="true"/>
 				<form:errors path="amount" cssClass="text-danger" />
 			</div>
 		</div>

@@ -17,6 +17,14 @@
 		<c:if test="${message != null}">
 			${message}
 		</c:if>
+		<br/>
+		<c:if test="${message1 != null}">
+			${message1}
+		</c:if>
+		<br/>
+		<c:if test="${message2 != null}">
+			${message2}
+		</c:if>
 </p>
 		<br>
 </body>

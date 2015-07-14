@@ -106,4 +106,10 @@
 		<put-attribute name="body" value="/WEB-INF/views/listsubcategory.jsp" />
 	</definition>
 	
+	<definition name="success" extends="baseLayout">
+		<put-attribute name="title" value="Success" />
+		<put-attribute name="heading" value="ListCategory" />
+		<put-attribute name="body" value="/WEB-INF/views/success.jsp" />
+	</definition>
+	
 </tiles-definitions>
