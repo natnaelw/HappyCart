@@ -21,8 +21,33 @@
                                 <label class="col-sm-2 control-label" for="selectCategory">Category</label>
                                 <div class="col-xs-4">
                                 	<form:select id="selectCategory" name="subCategoryId" path="" multiple="single" class="form-control">
+                                		<c:set var="group" scope="page" value="''"/>
                                 		<c:forEach var="subCategory" items="${subCategories}">
-				    						<option value="${subCategory.id}">${subCategory.name}</option>
+                                			<c:choose>
+                                				<c:when test="${group != subCategory.category.name}">
+             								    	<optgroup label="${subCategory.category.name}">
+             								    		<c:choose>
+             								    			<c:when test="${product.subcategory.name != subCategory.name}">
+             								    				<option value="${subCategory.id}">${subCategory.name}</option>
+             								    			</c:when>
+								    						<c:otherwise>
+								    							<option value="${subCategory.id}" selected>${subCategory.name}</option>
+								    						</c:otherwise>
+							    						</c:choose>
+										  			</optgroup>
+										  			<c:set var="group" scope="page" value="${subCategory.category.name}"/>
+                                				</c:when>
+                                				<c:otherwise>
+							    					<c:choose>
+           								    			<c:when test="${product.subcategory.name != subCategory.name}">
+           								    				<option value="${subCategory.id}">${subCategory.name}</option>
+           								    			</c:when>
+							    						<c:otherwise>
+							    							<option value="${subCategory.id}" selected>${subCategory.name}</option>
+							    						</c:otherwise>
+						    						</c:choose>
+                                				</c:otherwise>
+                                			</c:choose>
 									  	</c:forEach>
                                 	</form:select>
                                 </div>
@@ -31,35 +56,35 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="productName">Product name</label>
                                 <div class="col-xs-4">
-                                    <form:input type="text" id ="productName" path="name" class="form-control"/>
+                                    <form:input type="text" id ="productName" path="name" value="${product.name}" class="form-control"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="price">Product price</label>
                                 <div class="col-xs-4">
-                                    <form:input type="text" id ="price" path="unitPrice" class="form-control"/>
+                                    <form:input type="text" id ="price" path="unitPrice" value="${product.unitPrice}" class="form-control"/>
                                 </div>
                             </div>
 							
                            	<div class="form-group">
                                 <label class="col-sm-2 control-label" for="manufacturer">Manufacturer</label>
                                 <div class="col-xs-4">
-                                    <form:input type="text" id ="manufacturer" path="manufacturer" class="form-control"/>
+                                    <form:input type="text" id ="manufacturer" path="manufacturer" value="${product.manufacturer}" class="form-control"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="description">Description</label>
                                 <div class="col-xs-4">
-                                    <form:input type="text" id ="description" path="description" class="form-control"/>
+                                    <form:input type="text" id ="description" path="description" value="${product.description}" class="form-control"/>
                                 </div>
                             </div>
 							
                             <div class="form-group">
                                 <label class="col-sm-2 control-label" for="availableItem">Units in stock</label>
                                 <div class="col-xs-4">
-                                    <form:input type="text" id ="availableItem" path="unitInStock" class="form-control"/>
+                                    <form:input type="text" id ="availableItem" path="unitInStock" value="${product.unitInStock}" class="form-control"/>
                                 </div>
                             </div>
 							
@@ -72,7 +97,7 @@
                  
                             <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-10">
-                                    <input type="submit" id ="buttonSubmit"  value="Submit" class="btn btn-default"/>
+                                    <input type="submit" id ="buttonUpdate"  value="Update" class="btn btn-default"/>
                                     <a href="<spring:url value="/vendor/"/>" class="btn btn-default" role="button">Cancel</a>
                                 </div>
                             </div>

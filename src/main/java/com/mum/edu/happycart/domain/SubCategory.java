@@ -19,18 +19,8 @@ public class SubCategory {
 	@ManyToOne
 	private Category category;
 	
-	@OneToMany(mappedBy="subcategory", orphanRemoval = false )
-	private List<Product> products;
-	
-	public SubCategory(String subCategoryId, String name, Category category) {
-		super();
-        this.setId(id);
-		this.setName(name);
-		this.setCategory(category);
-	}
-	public SubCategory(){
-		this("","",null);
-	}
+	/*@OneToMany(mappedBy="subcategory", orphanRemoval = false )
+	private List<Product> products;*/
 	
 	public void setId(int id) {
 		this.id = id;
@@ -48,13 +38,13 @@ public class SubCategory {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-	public long getId() {
+	public int getId() {
 		return id;
 	}
-	public List<Product> getProducts() {
+	/*public List<Product> getProducts() {
 		return products;
 	}
 	public void setProducts(List<Product> products) {
 		this.products = products;
-	}
+	}*/
 }

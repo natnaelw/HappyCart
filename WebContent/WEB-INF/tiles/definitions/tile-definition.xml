@@ -112,4 +112,17 @@
 		<put-attribute name="body" value="/WEB-INF/views/success.jsp" />
 	</definition>
 	
+		<definition name="productEdit" extends="baseLayout">
+		<put-attribute name="title" value="Editproduct" />
+		<put-attribute name="heading" value="Product" />
+		<put-attribute name="body" value="/WEB-INF/views/vendorProductEdit.jsp" />
+	</definition>
+	
+		
+	<definition name="categoryAdd" extends="baseLayout">
+		<put-attribute name="title" value="Category" />
+		<put-attribute name="heading" value="Category" />
+		<put-attribute name="body" value="/WEB-INF/views/categoryCreate.jsp" />
+	</definition>
+
 </tiles-definitions>
