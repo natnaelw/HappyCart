@@ -7,5 +7,6 @@ import com.mum.edu.happycart.domain.Credentials;
 
 @Repository
 public interface CredentialsRepository extends CrudRepository<Credentials, String> {
-
+       
+	public Credentials getCredentialByUsername(String username);
 }

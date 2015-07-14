@@ -41,7 +41,6 @@ private String userType;
 @JoinColumn(name="addressid")
 private Address address;
 
-
 @OneToOne(fetch=FetchType.LAZY) 
 @JoinColumn(name="USERNAME") 
 private Credentials credentials;

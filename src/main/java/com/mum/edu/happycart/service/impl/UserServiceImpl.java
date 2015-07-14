@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.mum.edu.happycart.domain.Credentials;
 import com.mum.edu.happycart.domain.User;
 import com.mum.edu.happycart.repository.CredentialsRepository;
 import com.mum.edu.happycart.repository.UserRepository;
@@ -28,6 +29,13 @@ public class UserServiceImpl implements UserService{
 //		user.getCredentials().setVerifyPassword(encoder.encode("123"));
 		credentialRepository.save(user.getCredentials());
 		userRepository.save(user);
+	}
+
+	
+
+	@Override
+	public User getUserBycredentials(Credentials userCredentials) {
+		return userRepository.getUserBycredentials(userCredentials);
 	}
 
 
