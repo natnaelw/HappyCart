@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mum.edu.happycart.domain.Product;
+import com.mum.edu.happycart.service.CatService;
 import com.mum.edu.happycart.service.ProductService;
 import com.mum.edu.happycart.service.SubCategoryService;
 
@@ -26,7 +27,7 @@ public class VendorController {
 	private ProductService productService;
 	
 	@Autowired
-	private SubCategoryService subCategoryService;
+	private CatService catService;
 	
 	@RequestMapping(value = {"/","/list"}, method = RequestMethod.GET)
 	public String showProducts(Model model){
@@ -37,7 +38,7 @@ public class VendorController {
 	@RequestMapping(value = {"/upload"}, method = RequestMethod.GET)
 	public String uploadProductsForm(Model model, Product product){
 		model.addAttribute("product", product);
-		model.addAttribute("subCategories",subCategoryService.getAllSubCategory());
+		model.addAttribute("subCategories",catService.getAllCategory());
 		return "vendorProduct";
 	}
 	
@@ -46,7 +47,7 @@ public class VendorController {
 									HttpServletRequest request){
 		String imagePath = "";
 		String[] subCategoryIds = request.getParameterValues("subCategoryId");
-		if(subCategoryIds.length > 0) newProduct.setSubcategory(subCategoryService.getSubCategoryById(Integer.parseInt(subCategoryIds[0])));
+		if(subCategoryIds.length > 0) newProduct.setSubcategory(catService.getCategoryById(Integer.parseInt(subCategoryIds[0])));
 		MultipartFile productImage = newProduct.getProductImage();
 		 
 		//String rootDirectory = request.getSession().getServletContext().getRealPath("/");
@@ -70,9 +71,8 @@ public class VendorController {
 	
 	@RequestMapping(value="/edit", method=RequestMethod.GET)
 	public String updateProducts(@RequestParam("id") int id, Model model){
-		Product pro = this.productService.getProductById(id);
 		model.addAttribute("product", this.productService.getProductById(id));
-		model.addAttribute("subCategories",subCategoryService.getAllSubCategory());
+		model.addAttribute("subCategories",catService.getAllCategory());
 		return "vendorProductEdit";
 	}
 	
@@ -81,7 +81,7 @@ public class VendorController {
 									@RequestParam("subCategoryId") int id,
 									RedirectAttributes redirectAttribute){
 		String imagePath = "";
-		if(id > 0) newProduct.setSubcategory(subCategoryService.getSubCategoryById(id));
+		if(id > 0) newProduct.setSubcategory(catService.getCategoryById(id));
 		MultipartFile productImage = newProduct.getProductImage();
 		if (productImage!=null && !productImage.isEmpty()) {
 			try {

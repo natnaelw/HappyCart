@@ -19,8 +19,8 @@ public class SubCategory {
 	@ManyToOne
 	private Category category;
 	
-	@OneToMany(mappedBy="subcategory", orphanRemoval = false )
-	private List<Product> products;
+	/*@OneToMany(mappedBy="subcategory", orphanRemoval = false )
+	private List<Product> products;*/
 	
 	public void setId(int id) {
 		this.id = id;
@@ -41,10 +41,10 @@ public class SubCategory {
 	public int getId() {
 		return id;
 	}
-	public List<Product> getProducts() {
+	/*public List<Product> getProducts() {
 		return products;
 	}
 	public void setProducts(List<Product> products) {
 		this.products = products;
-	}
+	}*/
 }

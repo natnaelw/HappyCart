@@ -34,30 +34,13 @@ public class Product{
 	private MultipartFile  productImage;
 	
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-	private SubCategory subcategory;
+	private Cat cat;
+	
 	private String description;
 	private String manufacturer;
 	private double unitPrice;
 	private String conditions;
 	private int unitInStock;
-	
-	
-	public Product(String name, MultipartFile productImage, SubCategory subcategory, String description,
-			String manufacturer, double unitPrice, String conditions, int unitInStock) {
-		super();
-		this.name = name;
-		this.productImage = productImage;
-		this.subcategory = subcategory;
-		this.description = description;
-		this.manufacturer = manufacturer;
-		this.unitPrice = unitPrice;
-		this.conditions = conditions;
-		this.unitInStock = unitInStock;
-	}
-
-	public Product(){
-		this("",null,null,"","",0,"",0);
-	}
 	
 	public long getId() {
 		return id;
@@ -118,12 +101,12 @@ public class Product{
 
 
 
-	public SubCategory getSubcategory() {
-		return subcategory;
+	public Cat getSubcategory() {
+		return cat;
 	}
 
-	public void setSubcategory(SubCategory subcategory) {
-		this.subcategory = subcategory;
+	public void setSubcategory(Cat subcategory) {
+		this.cat = subcategory;
 	}
 
 	public void setProductImage(MultipartFile productImage) {
