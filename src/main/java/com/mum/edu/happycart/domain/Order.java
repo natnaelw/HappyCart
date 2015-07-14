@@ -11,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -24,8 +23,7 @@ public class Order implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "order_id")
-	private int orderId;
+	private int id;
 
 	@Column(name = "total_amount", nullable=false)
 	private double totalAmount;
@@ -35,27 +33,29 @@ public class Order implements Serializable{
 
 	@OneToMany(mappedBy = "order", cascade=CascadeType.ALL, orphanRemoval=true)
 	private List<OrderDetail> orderDetail;
-
-	@OneToOne
-	@JoinColumn(name = "user_id")
-	private User user;
 	
+	  @OneToOne (cascade=CascadeType.ALL)
+	  @JoinColumn(name="user_id", unique= true, nullable=true, insertable=true, updatable=true)
+	  private User user;
 	
 	public void add(OrderDetail orderDetail){
 		this.orderDetail.add(orderDetail);
 	}
 
-	public int getOrderId() {
-		return orderId;
-	}
-
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
-	}
-
+	
 	public double getTotalAmount() {
 		return totalAmount;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 
 	public void setTotalAmount(double totalAmount) {
 		this.totalAmount = totalAmount;
@@ -73,16 +73,18 @@ public class Order implements Serializable{
 		return orderDetail;
 	}
 
-	public void setOrderLine(List<OrderDetail> orderDetail) {
+	public void setOrderDetail(List<OrderDetail> orderDetail) {
 		this.orderDetail = orderDetail;
 	}
+
 
 	public User getUser() {
 		return user;
 	}
 
+
 	public void setUser(User user) {
 		this.user = user;
 	}
-
+	
 }

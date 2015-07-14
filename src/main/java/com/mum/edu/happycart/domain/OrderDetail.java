@@ -2,6 +2,7 @@ package com.mum.edu.happycart.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +15,6 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "orderline", uniqueConstraints=@UniqueConstraint(columnNames={"order_id", "product_id"}))
 public class OrderDetail implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -34,7 +34,7 @@ public class OrderDetail implements Serializable{
 	@JoinColumn(name = "order_id")
 	private Order order;
 
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "product_id")
 	private Product product;
 
