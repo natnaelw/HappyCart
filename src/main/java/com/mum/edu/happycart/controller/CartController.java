@@ -45,6 +45,11 @@ public class CartController {
 			cartService.create(cart);
 		}
 		model.addAttribute("cart", cart);
+		
+		System.out.println("CARTController"  + cart.getCartItems());
+		for (String x : cart.getCartItems().keySet()) {
+			System.out.println("%%%%"+x);
+		}
 		return "cart";
 	}
 	
@@ -71,9 +76,8 @@ public class CartController {
 		}
 		CartItem item = new CartItem(product);
 		//item.setQuantity(quantity);
-		System.out.println("Controller item before" + item.getTotalPrice());
 		cart.addCartItem(item, mode);
-		System.out.println("Controller item" + item.getTotalPrice());
+		System.out.println("******CartId" + cartId);
 		cartService.update(cartId, cart);
 
 	}

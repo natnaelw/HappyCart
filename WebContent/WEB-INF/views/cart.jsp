@@ -26,6 +26,7 @@
 			</div>
 		</c:when>
 	<c:otherwise>
+	
 			<div id="table">
 				<table style="width: 100%; text-align: center;">
 					<thead>
@@ -96,15 +97,17 @@
 						</tr>
 			  		</tbody>
 			 	 </table>  
-					<input type="submit"
-					value="<spring:message code="cart.table.label.checkout" />"
-					onclick="checkOut('<spring:url value="/home" />')"
-					class="btn-primary" />
+<!-- 					<input type="submit" -->
+<%-- 					value="<spring:message code="cart.table.label.checkout" />" --%>
+<%-- 					onclick="checkOut('<spring:url value="/home" />')" --%>
+<!-- 					class="btn-primary" /> -->
+					<li><a href="<spring:url value="/checkout"/>">Proceed to Checkout</a></li>
 				</div>
 	  		</c:otherwise>
+	 
 	  	</c:choose>
   		<div id="checkoutdialog" title="Cart Checkout" style="display: none;">
-		<p>You have checkout your cart. Thank you!</p>
+		<p> checkout your successuful. Thank you!</p>
 	</div>
 </div>
 </body>
