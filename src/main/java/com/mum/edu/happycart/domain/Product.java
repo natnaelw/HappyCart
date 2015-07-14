@@ -33,7 +33,7 @@ public class Product{
 	@Transient
 	private MultipartFile  productImage;
 	
-	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
 	private SubCategory subcategory;
 	private String description;
 	private String manufacturer;

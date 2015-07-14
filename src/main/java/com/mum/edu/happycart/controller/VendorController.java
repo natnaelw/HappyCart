@@ -46,13 +46,13 @@ public class VendorController {
 									HttpServletRequest request){
 		String imagePath = "";
 		String[] subCategoryIds = request.getParameterValues("subCategoryId");
-		//if(subCategoryIds.length > 0) newProduct.setSubcategory(subCategoryService.getSubCategoryById(Long.parseLong(subCategoryIds[0])));
+		if(subCategoryIds.length > 0) newProduct.setSubcategory(subCategoryService.getSubCategoryById(Integer.parseInt(subCategoryIds[0])));
 		MultipartFile productImage = newProduct.getProductImage();
 		 
 		//String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 		if (productImage!=null && !productImage.isEmpty()) {
 			try {
-				imagePath =  "E:\\resources\\images\\"+ newProduct.getName() + ".png";
+				imagePath =  "C:\\Users\\Ketia\\Documents\\MUM\\pm\\HappyCart\\WebContent\\resources\\images"+ newProduct.getId() + ".png";
 				productImage.transferTo(new File(imagePath));
 			} catch (Exception e) {
 				throw new RuntimeException("Product Image saving failed",e);
@@ -63,8 +63,36 @@ public class VendorController {
 	}
 	
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
-	public String deleteProducts(@RequestParam("id") int id, Model model, RedirectAttributes redirectAttribute){
+	public String deleteProducts(@RequestParam("id") int id){
 		this.productService.deleteProductById(id);
+		return "redirect:/vendor/";
+	}
+	
+	@RequestMapping(value="/edit", method=RequestMethod.GET)
+	public String updateProducts(@RequestParam("id") int id, Model model){
+		Product pro = this.productService.getProductById(id);
+		model.addAttribute("product", this.productService.getProductById(id));
+		model.addAttribute("subCategories",subCategoryService.getAllSubCategory());
+		return "vendorProductEdit";
+	}
+	
+	@RequestMapping(value="/edit", method=RequestMethod.POST)
+	public String updateProducts(@ModelAttribute("product") Product newProduct,
+									@RequestParam("subCategoryId") int id,
+									RedirectAttributes redirectAttribute){
+		String imagePath = "";
+		if(id > 0) newProduct.setSubcategory(subCategoryService.getSubCategoryById(id));
+		MultipartFile productImage = newProduct.getProductImage();
+		if (productImage!=null && !productImage.isEmpty()) {
+			try {
+				imagePath =  "C:\\Users\\Ketia\\Documents\\MUM\\pm\\HappyCart\\WebContent\\resources\\images\\"+ newProduct.getId() + ".png";
+				productImage.transferTo(new File(imagePath));
+			} catch (Exception e) {
+				throw new RuntimeException("Product Image saving failed",e);
+			}
+		}
+		productService.updateProduct(newProduct);
+		redirectAttribute.addFlashAttribute("message", "Successfully updated item");
 		return "redirect:/vendor/";
 	}
 }

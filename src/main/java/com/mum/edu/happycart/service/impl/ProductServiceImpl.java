@@ -68,8 +68,17 @@ public class ProductServiceImpl implements ProductService {
 
 
 	@Override
-	public Product updateProduct(Product product) {
-		// TODO Auto-generated method stub
+	public Product updateProduct(Product updateProduct) {
+		Product currentProduct = this.productRepository.getProductById(updateProduct.getId());
+		currentProduct.setConditions(updateProduct.getConditions());
+		currentProduct.setDescription(updateProduct.getDescription());
+		currentProduct.setManufacturer(updateProduct.getManufacturer());
+		currentProduct.setName(updateProduct.getName());
+		currentProduct.setProductImage(updateProduct.getProductImage());
+		currentProduct.setSubcategory(updateProduct.getSubcategory());
+		currentProduct.setUnitInStock(updateProduct.getUnitInStock());
+		currentProduct.setUnitPrice(updateProduct.getUnitPrice());
+		this.productRepository.save(currentProduct);
 		return null;
 	}
 

@@ -64,15 +64,22 @@
 		<put-attribute name="heading" value="Cart" />
 	<put-attribute name="body" value="/WEB-INF/views/cart.jsp" />
 	</definition>
+	
 	<definition name="vendorHome" extends="baseLayout">
 		<put-attribute name="title" value="Vendor" />
 		<put-attribute name="heading" value="Vendor" />
 		<put-attribute name="body" value="/WEB-INF/views/vendorHome.jsp" />
 	</definition>
 	
-	<definition name="vendorProduct" extends="baseLayout">
+	<definition name="productAdd" extends="baseLayout">
 		<put-attribute name="title" value="Product" />
 		<put-attribute name="heading" value="VendorProduct" />
 		<put-attribute name="body" value="/WEB-INF/views/vendorProduct.jsp" />
+	</definition>
+	
+	<definition name="productEdit" extends="baseLayout">
+		<put-attribute name="title" value="Editproduct" />
+		<put-attribute name="heading" value="Product" />
+		<put-attribute name="body" value="/WEB-INF/views/vendorProductEdit.jsp" />
 	</definition>
 </tiles-definitions>

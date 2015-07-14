@@ -15,7 +15,7 @@ public class SubCategoryServiceImpl implements SubCategoryService {
 	private SubCategoryRepository subCategoryRepository;
 
 	@Override
-	public SubCategory getSubCategoryById(Long id) {
+	public SubCategory getSubCategoryById(int id) {
 		return this.subCategoryRepository.findOne(id);
 	}
 
