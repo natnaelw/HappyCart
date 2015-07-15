@@ -1,54 +1,59 @@
 package com.mum.edu.happycart.controller;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mum.edu.happycart.domain.Category;
-//import com.mum.edu.happycart.domain.Product;
 import com.mum.edu.happycart.service.CategoryService;
 
-
 @Controller
-@RequestMapping(value="/category")
+@RequestMapping("/admin/category")
 public class CategoryController {
-	@Autowired
-	CategoryService catSer;
-	@RequestMapping(value="/admin", method=RequestMethod.GET)
-	public String getAdminPage()
-	{
-		return "admin";
-	}
-	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public String GetAllCategory( Category category, Model model){
-		model.addAttribute("category",catSer.GetAllCategory());
-		return "listCategory";
-	}
-	@RequestMapping(value="/add", method=RequestMethod.GET)
 	
-		public String getProduct(Category category , Model model)
-		{
+	@Autowired
+	private CategoryService catService;
+	
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String categoryList(Model model, Category category){
 		model.addAttribute("category",category);
-		return "addCategory";
+		model.addAttribute("categories", catService.getAllCategory());
+		return "categoryCreate";
 	}
-	@RequestMapping(value="/add", method=RequestMethod.POST)
-	public String saveCategory(@Valid Category category, BindingResult rt,BindingResult br, RedirectAttributes ra){
-		 String view ="redirect:/category/list";
-         if(!rt.hasErrors())
-         {
-        	 ra.addFlashAttribute("message", "Successfully Add new Category");
-             catSer.save(category);
-            return view; 
-         }
-         else {
-            return  "welcome";
-         }
+	
+	@RequestMapping(value = "/", method = RequestMethod.POST)
+	public String categorySave(@ModelAttribute("category") Category newCategory, 
+							   RedirectAttributes redirectAttributes){
+		this.catService.addCategory(newCategory);
+		redirectAttributes.addFlashAttribute("message", "Category successfully created.");
+		return "redirect:/admin/category/";
 	}
-
+	
+	@RequestMapping(value = "/assign", method = RequestMethod.GET)
+	public String categoryAssign(Model model, 
+								Category category){
+		model.addAttribute("category", category);
+		model.addAttribute("categories", catService.getAllCategory());
+		return "categoryAssign";
+	}
+	
+	@RequestMapping(value = "/assign", method = RequestMethod.POST)
+	public String categoryAssign(@RequestParam("categoryId") int catId,
+								@RequestParam("subCategoryId") int subCatid,
+								RedirectAttributes redirectAttributes){
+		if(catId > 0 && subCatid >0  && (catId != subCatid)) {
+			Category category = this.catService.getCategoryById(catId);
+			Category subCategory = this.catService.getCategoryById(subCatid);
+			this.catService.addSubCategory(category, subCategory);
+			redirectAttributes.addFlashAttribute("message","Successfully adding.");
+		}
+		else
+			redirectAttributes.addFlashAttribute("message","Adding failed.");
+		return "redirect:/admin/category/assign";
+	}
 }

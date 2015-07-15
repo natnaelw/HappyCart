@@ -15,9 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mum.edu.happycart.domain.Product;
-import com.mum.edu.happycart.service.CatService;
+import com.mum.edu.happycart.service.CategoryService;
 import com.mum.edu.happycart.service.ProductService;
-import com.mum.edu.happycart.service.SubCategoryService;
 
 @Controller
 @RequestMapping("/vendor")
@@ -27,7 +26,7 @@ public class VendorController {
 	private ProductService productService;
 	
 	@Autowired
-	private CatService catService;
+	private CategoryService catService;
 	
 	@RequestMapping(value = {"/","/list"}, method = RequestMethod.GET)
 	public String showProducts(Model model){
@@ -47,13 +46,13 @@ public class VendorController {
 									HttpServletRequest request){
 		String imagePath = "";
 		String[] subCategoryIds = request.getParameterValues("subCategoryId");
-		if(subCategoryIds.length > 0) newProduct.setSubcategory(catService.getCategoryById(Integer.parseInt(subCategoryIds[0])));
+		if(subCategoryIds.length > 0) newProduct.setCategory(catService.getCategoryById(Integer.parseInt(subCategoryIds[0])));
 		MultipartFile productImage = newProduct.getProductImage();
 		 
 		//String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 		if (productImage!=null && !productImage.isEmpty()) {
 			try {
-				imagePath =  "C:\\Users\\Ketia\\Documents\\MUM\\pm\\HappyCart\\WebContent\\resources\\images"+ newProduct.getId() + ".png";
+				imagePath =  "E:\\resources\\images"+ newProduct.getId() + ".png";
 				productImage.transferTo(new File(imagePath));
 			} catch (Exception e) {
 				throw new RuntimeException("Product Image saving failed",e);
@@ -81,7 +80,7 @@ public class VendorController {
 									@RequestParam("subCategoryId") int id,
 									RedirectAttributes redirectAttribute){
 		String imagePath = "";
-		if(id > 0) newProduct.setSubcategory(catService.getCategoryById(id));
+		if(id > 0) newProduct.setCategory(catService.getCategoryById(id));
 		MultipartFile productImage = newProduct.getProductImage();
 		if (productImage!=null && !productImage.isEmpty()) {
 			try {

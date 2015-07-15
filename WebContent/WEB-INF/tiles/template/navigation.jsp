@@ -7,7 +7,7 @@
 <li><a href="<spring:url value="/products/"/>">Products</a></li>
 <li><a href="<spring:url value="/cart/"/>">Shopping Cart</a></li>
 <security:authorize access="hasRole('ROLE_ADMIN')">
-<li><a href="<spring:url value="/admin/"/>">Admin</a></li>
+<li><a href="<spring:url value="/admin/category/"/>">Admin</a></li>
 </security:authorize>
 <security:authorize access="hasAnyRole('ROLE_VENDOR','ROLE_ADMIN')">
 <li><a href="<spring:url value="/vendor/"/>">Vendor</a></li>

@@ -1,64 +1,69 @@
 package com.mum.edu.happycart.domain;
 
-import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
 @Entity
-public class Category implements Serializable {
-    private static final long serialVersionUID = 5658716793957904104L;
-    @Id
-    @GeneratedValue
-    private int id;
-    
-    private String name;
-    
-//    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    private List<Product> products;
-    
-
-//	public List<Product> getProducts() {
-//		return products;
-//	}
-//
-//	public void setProducts(List<Product> products) {
-//		this.products = products;
-//	}
-    
-    @OneToMany(mappedBy = "category")
-    private List<SubCategory> subCategory;
-
-	public Category() {
-    }
-    	
-    public Category(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-    
-    public int getId() {
+public class Category {
+	@Id
+	@GeneratedValue
+	private int id;
+	private String name;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Category category;
+	
+	@OneToMany(mappedBy="category" , fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Category> subCategory;
+	
+	@OneToMany(mappedBy="category", orphanRemoval = false )
+	private List<Product> products;
+	
+	public int getId() {
 		return id;
 	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 
-	public List<SubCategory> getSubCategory() {
+	public List<Product> getProducts() {
+		return products;
+	}
+	
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+	public List<Category> getSubCategory() {
 		return subCategory;
 	}
-
-	public void setSubCategory(List<SubCategory> subCategory) {
+	public void setSubCategory(List<Category> subCategory) {
 		this.subCategory = subCategory;
 	}
-
-	public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
+	public boolean isMainCat() {
+		if(this.category == null) return true;
+		return false;
+	}
+	
+	public void AddSubCategory(Category category){
+		if(category != null) this.subCategory.add(category);
+	}
 }

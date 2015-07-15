@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mum.edu.happycart.domain.Product;
-import com.mum.edu.happycart.domain.SubCategory;
 import com.mum.edu.happycart.repository.ProductRepository;
 import com.mum.edu.happycart.service.ProductService;
 
@@ -75,7 +74,7 @@ public class ProductServiceImpl implements ProductService {
 		currentProduct.setManufacturer(updateProduct.getManufacturer());
 		currentProduct.setName(updateProduct.getName());
 		currentProduct.setProductImage(updateProduct.getProductImage());
-		currentProduct.setSubcategory(updateProduct.getSubcategory());
+		currentProduct.setCategory(updateProduct.getCategory());
 		currentProduct.setUnitInStock(updateProduct.getUnitInStock());
 		currentProduct.setUnitPrice(updateProduct.getUnitPrice());
 		this.productRepository.save(currentProduct);

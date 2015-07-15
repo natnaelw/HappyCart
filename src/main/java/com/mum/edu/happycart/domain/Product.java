@@ -34,7 +34,7 @@ public class Product{
 	private MultipartFile  productImage;
 	
 	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-	private Cat cat;
+	private Category category;
 	
 	private String description;
 	private String manufacturer;
@@ -99,14 +99,12 @@ public class Product{
 		this.unitInStock = unitInStock;
 	}
 
-
-
-	public Cat getSubcategory() {
-		return cat;
+	public Category getCategory() {
+		return category;
 	}
 
-	public void setSubcategory(Cat subcategory) {
-		this.cat = subcategory;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 	public void setProductImage(MultipartFile productImage) {

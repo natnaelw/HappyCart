@@ -38,7 +38,7 @@ public class GlobalHandler {
 
 	@ModelAttribute("categories")
 	public List<Category> intializeModel(Model model) {
-		return categoryService.findAllCategories();
+		return categoryService.getAllCategory();
 	}
 
 	@ModelAttribute("products")
