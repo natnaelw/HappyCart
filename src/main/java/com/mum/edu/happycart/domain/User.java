@@ -45,9 +45,9 @@ private Address address;
 @JoinColumn(name="USERNAME") 
 private Credentials credentials;
 
-@OneToOne
-@JoinColumn(name="creditCardId")
-private CreditCard creditCard;
+//@OneToOne
+//@JoinColumn(name="creditCardId")
+//private CreditCard creditCard;
 
 
 public long getId() {
@@ -109,12 +109,12 @@ public void setCredentials(Credentials credentials) {
 	this.credentials = credentials;
 }
 
-public CreditCard getCreditCard() {
-	return creditCard;
-}
-
-public void setCreditCard(CreditCard creditCard) {
-	this.creditCard = creditCard;
-}
+//public CreditCard getCreditCard() {
+//	return creditCard;
+//}
+//
+//public void setCreditCard(CreditCard creditCard) {
+//	this.creditCard = creditCard;
+//}
 	
 }

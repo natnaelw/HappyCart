@@ -4,7 +4,10 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 
 
@@ -12,6 +15,7 @@ import javax.persistence.Id;
 public class CreditCardTransaction {
     
 	@Id
+	@GeneratedValue
 	@Column(name="creditcard_tra_id")
 	private long id;
 	private String creditCardNumber;
@@ -22,6 +26,11 @@ public class CreditCardTransaction {
 	private double vendorAmount;
 	private double happyCartAmount;
 	private double tax;
+	
+//	@ManyToOne
+//	@JoinColumn(name = "CreditCardID")
+//	private CreditCard creditCard;
+	
 	public String getCreditCardNumber() {
 		return creditCardNumber;
 	}
@@ -70,6 +79,18 @@ public class CreditCardTransaction {
 	public void setTax(double tax) {
 		this.tax = tax;
 	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+//	public CreditCard getCreditCard() {
+//		return creditCard;
+//	}
+//	public void setCreditCard(CreditCard creditCard) {
+//		this.creditCard = creditCard;
+//	}
 	
 	
 	

@@ -6,10 +6,11 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -23,6 +24,7 @@ public class CreditCard implements Serializable{
 	 */
 	private static final long serialVersionUID = 899550823247576223L;
 	@Id
+	@GeneratedValue
 	@Column(name = "creditCardId")
 	private long id;
 	
@@ -56,10 +58,13 @@ public class CreditCard implements Serializable{
 	
 	private double amount;
 	
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-	//@JoinColumn(name="creditCardId",referencedColumnName="creditCardId")
-	private List<CreditCardTransaction> creditCardTransaction;
+//	@OneToMany(mappedBy = "creditCard", cascade = CascadeType.ALL, orphanRemoval = true)
+//	private List<CreditCardTransaction> creditCardTransaction;
 	
+//	 @OneToOne (cascade=CascadeType.ALL)
+//	  @JoinColumn(name="user_id", unique= true, nullable=true, insertable=true, updatable=true)
+//	  private User user;
+//	
 
 	public double getAmount() {
 		return amount;
@@ -149,14 +154,14 @@ public class CreditCard implements Serializable{
 		this.moneyUsed = moneyUsed;
 	}
 
-	public List<CreditCardTransaction> getCreditCardTransaction() {
-		return creditCardTransaction;
-	}
-
-	public void setCreditCardTransaction(
-			List<CreditCardTransaction> creditCardTransaction) {
-		this.creditCardTransaction = creditCardTransaction;
-	}
+//	public List<CreditCardTransaction> getCreditCardTransaction() {
+//		return creditCardTransaction;
+//	}
+//
+//	public void setCreditCardTransaction(
+//			List<CreditCardTransaction> creditCardTransaction) {
+//		this.creditCardTransaction = creditCardTransaction;
+//	}
 	
 	
 

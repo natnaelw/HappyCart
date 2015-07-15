@@ -21,6 +21,7 @@ import com.mum.edu.happycart.domain.CreditCardTransaction;
 import com.mum.edu.happycart.domain.User;
 import com.mum.edu.happycart.service.AppSettingsService;
 import com.mum.edu.happycart.service.CreditCardService;
+import com.mum.edu.happycart.service.CreditCardTransactionService;
 import com.mum.edu.happycart.service.UserService;
 
 @Controller
@@ -34,6 +35,9 @@ public class SignUpController {
 
 	@Autowired
 	AppSettingsService appSettingsService;
+	
+	@Autowired
+	CreditCardTransactionService ccTransactionService;
 
 	User tempUser = new User();
 
@@ -56,7 +60,8 @@ public class SignUpController {
 		if (user.getUserType().equals("customer")) {
 			userService.addNewUser(user);
 			model.addAttribute("message",
-					"Customer Registration Successful!!!hank you for being a HappyCart Member!!!");
+					appSettingsService
+					.appSettings("RegistrationSuccess").getParamValue().toString());
 			return "messagePage";
 		}
 
@@ -86,19 +91,22 @@ public class SignUpController {
 				.findCreditCard(creditCard.getNumber());
 
 		if (creditCardFound == null) {
-			model.addAttribute("errorMessage", "Invalid Card / Card Not Found");
+			model.addAttribute("errorMessage", appSettingsService
+					.appSettings("ErrorCard").getParamValue().toString());
 			return "payment";
 		}
 
 		if (creditCardFound.getCreditAvailable() < creditCard.getAmount()) {
-			model.addAttribute("errorMessage", "Insuffcient Balance");
+			model.addAttribute("errorMessage", appSettingsService
+					.appSettings("ErrorBalance").getParamValue().toString());
 			return "payment";
 		}
 
 		processCreditCardTransaction(creditCard, creditCardFound);
 
 		model.addAttribute("message",
-				"Vendor Registration Successful!!!Thank you for being a HappyCart Member!!!");
+				 appSettingsService
+					.appSettings("RegistrationSuccess").getParamValue().toString());
 
 		return "messagePage";
 	}
@@ -124,16 +132,19 @@ public class SignUpController {
 				.appSettings("HappyCartPercentRegistration").getParamValue()
 				.toString())
 				* creditCard.getAmount());
-		ccTransaction.setProduct("0");
+		ccTransaction.setProduct("0"); //dummy product id 
 		ccTransaction.setPurchaseDate(date);
-		ccTransaction.setReceiptNumber(1);
+		ccTransaction.setReceiptNumber(1); //dummy receipt number
 		ccTransaction.setTax(Double.parseDouble(appSettingsService
 				.appSettings("TaxPercent").getParamValue().toString())
 				* creditCard.getAmount());
 		ccTransaction.setVendorAmount(0);
-		ccTransactionsList.add(ccTransaction);
-
-		creditCardFound.setCreditCardTransaction(ccTransactionsList);
+		//ccTransaction.setCreditCard(creditCardFound);
+		//ccTransactionsList.add(ccTransaction);
+        ccTransactionService.saveCreditCardTransaction(ccTransaction);
+        
+        
+		//creditCardFound.setCreditCardTransaction(ccTransactionsList);
 		creditCardService.saveCreditCard(creditCardFound);
 
 	}

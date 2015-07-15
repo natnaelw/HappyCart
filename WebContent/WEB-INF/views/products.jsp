@@ -26,8 +26,9 @@
 		<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
 					<div class="thumbnail">
 						<div class="caption">
+         <img src="<c:url value="/resources/images/${item.name}.png"></c:url>" alt="image"  style = "width:100%"/>
            <a href=" <spring:url value="/products/product/${item.id}" /> "><img
-					src="<spring:url value="/images/product/${item.productImage}" />" /> </a>
+					src="<spring:url value="/resources/images/${item.productImage}" />" /> </a>
 				<h4>$${item.unitPrice}</h4>
 				<p>${item.name}</p>
 				<p>

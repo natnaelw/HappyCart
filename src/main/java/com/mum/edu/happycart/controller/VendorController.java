@@ -44,6 +44,11 @@ public class VendorController {
 	@RequestMapping(value = {"/upload"}, method = RequestMethod.POST)
 	public String uploadProductsSave(@ModelAttribute("product") Product newProduct,
 									HttpServletRequest request){
+		
+		String rootDirectory = request.getSession().getServletContext()
+				.getRealPath("/");
+		System.out.println("TC Root Directory-" + rootDirectory);
+		
 		String imagePath = "";
 		String[] subCategoryIds = request.getParameterValues("subCategoryId");
 		if(subCategoryIds.length > 0) newProduct.setCategory(catService.getCategoryById(Integer.parseInt(subCategoryIds[0])));
@@ -52,7 +57,7 @@ public class VendorController {
 		//String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 		if (productImage!=null && !productImage.isEmpty()) {
 			try {
-				imagePath =  "E:\\resources\\images"+ newProduct.getId() + ".png";
+				imagePath =  rootDirectory+"\\resources\\images\\"+ newProduct.getName() + ".png";
 				productImage.transferTo(new File(imagePath));
 			} catch (Exception e) {
 				throw new RuntimeException("Product Image saving failed",e);
