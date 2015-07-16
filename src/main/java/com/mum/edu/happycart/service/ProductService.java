@@ -27,5 +27,5 @@ public interface ProductService {
 	
 	public Product updateProduct(Product product);
 	
-
+	public void postProductById(long productId, String isPost);
 }

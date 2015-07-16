@@ -1,6 +1,8 @@
 package com.mum.edu.happycart.domain;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,8 +11,14 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.annotations.LazyToOne;
 import org.hibernate.validator.constraints.Email;
 
 
@@ -49,6 +57,8 @@ private Credentials credentials;
 @JoinColumn(name="creditCardId")
 private CreditCard creditCard;
 
+/*@OneToMany(mappedBy = "user", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+private Set<Product> products;*/
 
 public long getId() {
 	return id;
@@ -116,5 +126,17 @@ public CreditCard getCreditCard() {
 public void setCreditCard(CreditCard creditCard) {
 	this.creditCard = creditCard;
 }
+
+/*public Set<Product> getProducts() {
+	return products;
+}
+
+public void setProducts(Set<Product> products) {
+	this.products = products;
+}
+
+public void addProduct(Product product){
+	if(product != null) this.products.add(product);
+}*/
 	
 }

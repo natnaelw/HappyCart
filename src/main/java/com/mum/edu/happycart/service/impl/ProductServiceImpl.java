@@ -1,5 +1,6 @@
 package com.mum.edu.happycart.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.mum.edu.happycart.domain.Product;
 import com.mum.edu.happycart.repository.ProductRepository;
+import com.mum.edu.happycart.repository.UserRepository;
 import com.mum.edu.happycart.service.ProductService;
+import com.mum.edu.happycart.service.UserService;
 
 /**
  * Product Service
@@ -82,6 +85,12 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 
+	@Override
+	public void postProductById(long productId, String isPost) {
+		Product product = this.productRepository.getProductById(productId);
+		product.setPost(isPost);
+		this.productRepository.save(product);
+	}
 //	@Override
 	//public List<Product> getProductBySubCategory(SubCategory subcategory) {
 		// TODO Auto-generated method stub

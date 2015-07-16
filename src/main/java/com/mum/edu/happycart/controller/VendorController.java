@@ -15,8 +15,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mum.edu.happycart.domain.Product;
+import com.mum.edu.happycart.domain.User;
 import com.mum.edu.happycart.service.CategoryService;
 import com.mum.edu.happycart.service.ProductService;
+import com.mum.edu.happycart.service.UserService;
 
 @Controller
 @RequestMapping("/vendor")
@@ -26,7 +28,10 @@ public class VendorController {
 	private ProductService productService;
 	
 	@Autowired
-	private CategoryService catService;
+	private CategoryService categoryService;
+	
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping(value = {"/","/list"}, method = RequestMethod.GET)
 	public String showProducts(Model model){
@@ -37,7 +42,7 @@ public class VendorController {
 	@RequestMapping(value = {"/upload"}, method = RequestMethod.GET)
 	public String uploadProductsForm(Model model, Product product){
 		model.addAttribute("product", product);
-		model.addAttribute("subCategories",catService.getAllCategory());
+		model.addAttribute("subCategories",categoryService.getAllCategory());
 		return "vendorProduct";
 	}
 	
@@ -46,7 +51,7 @@ public class VendorController {
 									HttpServletRequest request){
 		String imagePath = "";
 		String[] subCategoryIds = request.getParameterValues("subCategoryId");
-		if(subCategoryIds.length > 0) newProduct.setCategory(catService.getCategoryById(Integer.parseInt(subCategoryIds[0])));
+		if(subCategoryIds.length > 0) newProduct.setCategory(categoryService.getCategoryById(Integer.parseInt(subCategoryIds[0])));
 		MultipartFile productImage = newProduct.getProductImage();
 		 
 		//String rootDirectory = request.getSession().getServletContext().getRealPath("/");
@@ -58,7 +63,8 @@ public class VendorController {
 				throw new RuntimeException("Product Image saving failed",e);
 			}
 		}
-		productService.addProduct(newProduct);
+		newProduct.setUserId(this.getCurrentUser().getId());
+		this.productService.addProduct(newProduct);
 		return "redirect:/vendor/";
 	}
 	
@@ -71,7 +77,7 @@ public class VendorController {
 	@RequestMapping(value="/edit", method=RequestMethod.GET)
 	public String updateProducts(@RequestParam("id") int id, Model model){
 		model.addAttribute("product", this.productService.getProductById(id));
-		model.addAttribute("subCategories",catService.getAllCategory());
+		model.addAttribute("subCategories",categoryService.getAllCategory());
 		return "vendorProductEdit";
 	}
 	
@@ -80,7 +86,7 @@ public class VendorController {
 									@RequestParam("subCategoryId") int id,
 									RedirectAttributes redirectAttribute){
 		String imagePath = "";
-		if(id > 0) newProduct.setCategory(catService.getCategoryById(id));
+		if(id > 0) newProduct.setCategory(categoryService.getCategoryById(id));
 		MultipartFile productImage = newProduct.getProductImage();
 		if (productImage!=null && !productImage.isEmpty()) {
 			try {
@@ -90,8 +96,23 @@ public class VendorController {
 				throw new RuntimeException("Product Image saving failed",e);
 			}
 		}
+		newProduct.setUserId(this.getCurrentUser().getId());
 		productService.updateProduct(newProduct);
 		redirectAttribute.addFlashAttribute("message", "Successfully updated item");
 		return "redirect:/vendor/";
 	}
+	
+	@RequestMapping(value = "/post", method = RequestMethod.GET)
+	public String postProduct(@RequestParam("id") long id,
+							  @RequestParam("isPost") String isPost,
+							  RedirectAttributes redirectAttributes){
+		this.productService.postProductById(id, isPost.equals("Y") ? "N" : "Y");
+		return "redirect:/vendor/";
+	}
+	
+	private User getCurrentUser(){
+		return this.userService.getLoggedInUser();
+	}
+	
+	
 }
