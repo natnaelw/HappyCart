@@ -162,7 +162,7 @@ public class PaymentController {
 			//ccTransaction.setCreditCard(creditCardFound);
 			//ccTransactionsList.add(ccTransaction);
 			ccTransactionService.saveCreditCardTransaction(ccTransaction);
-			System.out.println("------Adding two Tra Details----");
+			System.out.println("------Adding two Tra$$$$$ Details----");
 		}
 
 		creditCardFound.setAmount(creditCard.getAmount());

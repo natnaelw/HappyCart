@@ -1,11 +1,13 @@
 package com.mum.edu.happycart.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mum.edu.happycart.domain.Product;
+import com.mum.edu.happycart.domain.SearchDto;
 import com.mum.edu.happycart.repository.ProductRepository;
 import com.mum.edu.happycart.service.ProductService;
 
@@ -34,11 +36,13 @@ public class ProductServiceImpl implements ProductService {
 		productRepository.save(product);
 	}
 
+	
 	@Override
 	public List<Product> findAll() {
 		return (List<Product>)productRepository.findAll();
 	}
 
+	
 	@Override
 	public Product findOne(long productid) {
 		return productRepository.findOne(productid);
@@ -50,7 +54,6 @@ public class ProductServiceImpl implements ProductService {
 		this.productRepository.delete(id);
 		
 	}
-
 
 	@Override
 	public List<Product> getAllProducts() {
@@ -88,5 +91,16 @@ public class ProductServiceImpl implements ProductService {
 	//	return productRepository.getProductBySubCategory(subcategory);
 	//}
 		
+	
+	public List<Product> findByFilter(SearchDto filterElements) {
+		
+		List<Product> p = new ArrayList<Product>();
+		
+		return p;
+//		return productRepository.findByFilter(
+//				Long.parseLong(filterElements.getCategory()),
+//				filterElements.getItemCondition(),
+//				Double.parseDouble(filterElements.getPrice()));
+	}
 	
 }
