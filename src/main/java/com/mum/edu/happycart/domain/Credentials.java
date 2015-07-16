@@ -23,7 +23,7 @@ public class Credentials {
 	String verifyPassword;
 	Boolean enabled;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "USERNAME", referencedColumnName = "USERNAME")
 	List<Authority> authority;
 

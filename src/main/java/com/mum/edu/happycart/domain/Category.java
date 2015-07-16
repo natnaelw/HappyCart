@@ -20,7 +20,7 @@ public class Category {
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Category category;
 	
-	@OneToMany(mappedBy="category" , fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="category" , fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Category> subCategory;
 	
 	@OneToMany(mappedBy="category", orphanRemoval = false )

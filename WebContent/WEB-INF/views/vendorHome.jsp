@@ -3,28 +3,25 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<title>Welcome</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<title>Welcome</title>
 </head>
 <body>
-	<section>
+	<section class="container">
 		<div class="jumbotron">
-			<div class="container">
-				<h1>Products</h1>
-				<p>All the available products in our store</p>
-				<a href="<spring:url value="/vendor/upload"/>" class="btn btn-link">Add new product</a>
-				</div>
-			</div>	 
+			<h1>Products</h1>
+			<p>All the available products in our store</p>
+			<a href="<spring:url value="/vendor/upload"/>" class="btn btn-link">Add new product</a>
 		</div>
 	</section>
-<section class="container">
-                        <div class="panel panel-default">
-                        	<div class="panel-heading"><h3>Product List</h3>
-                        </div>
-                        <div class="panel-body"> 
+	<section class="container">
+	    <div class="panel panel-default">
+	    	<div class="panel-heading"><h3>Product List</h3>
+	    </div>
+        <div class="panel-body"> 
            <table class="table table-striped">
                 <thead>
                     <tr>
@@ -51,7 +48,19 @@
                         <td>${product.unitInStock}</td>
                         <td>
 			                <div class="btn-group">
-			                	<a href="<spring:url value="/vendor/edit?id=${product.id}" />" class="btn btn-info"><i class="icon icon-white icon-edit"></i> Edit</a>
+			                	<a href="<spring:url value="/vendor/edit?id=${product.id}" />" class="btn btn-default"><i class="icon icon-white icon-edit"></i> Edit</a>
+			                	
+			                    <c:if test="${product.post == 'Y'}">
+			                    	
+			                    </c:if>
+			                    <c:choose>
+			                    	<c:when test="${product.post == 'Y'}">
+			                    		<a href="<spring:url value="/vendor/post?id=${product.id}&isPost=${product.post}" />" class="btn btn-default"><i class="icon icon-white icon-edit"></i> Remove</a>
+			                    	</c:when>
+			                    	<c:otherwise>
+			                    		<a href="<spring:url value="/vendor/post?id=${product.id}&isPost=${product.post}" />" class="btn btn-default"><i class="icon icon-white icon-edit"></i> Post</a>  
+			                    	</c:otherwise>
+			                    </c:choose>
 			                    <a href="<spring:url value="/vendor/delete?id=${product.id}" />" class="btn btn-danger"><i class="icon icon-white icon-trash"></i> Delete</a>
 			                </div>
                         </td>
@@ -59,9 +68,9 @@
                 </c:forEach>
                 <tbody>
            </table>
-                        </div>
-                                                    </div>
-        </section>
+    	</div>
+    	</div>
+	</section>
         <!-- Thumbnail -->
         	<!-- <section class="container">
 		<div class="row">

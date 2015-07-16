@@ -73,7 +73,7 @@
                             <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-10">
                                     <input type="submit" id ="buttonSubmit"  value="Submit" class="btn btn-default"/>
-                                    <a href="<spring:url value="/vendor/"/>" class="btn btn-default" role="button">Cancel</a>
+                                    <a href="<spring:url value="/vendor/"/>" class="btn btn-default" role="button">Back</a>
                                 </div>
                             </div>
                     </div>

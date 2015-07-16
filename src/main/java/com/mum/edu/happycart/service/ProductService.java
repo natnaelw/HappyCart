@@ -32,4 +32,5 @@ public interface ProductService {
 	public List<Product> findByFilter(SearchDto searchDto);
 	
 
+	public void postProductById(long productId, String isPost);
 }

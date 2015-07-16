@@ -13,4 +13,5 @@ public interface CategoryService  {
 	public List<Category> getAllMainCategory();
 	public Category updateCategory(Category updateCat);
 	public void addSubCategory(Category category, Category subCategory);
+	public void detach(Category category, Category subCategory);
 }

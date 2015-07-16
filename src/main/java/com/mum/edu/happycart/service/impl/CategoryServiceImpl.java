@@ -47,7 +47,7 @@ public class CategoryServiceImpl implements CategoryService {
 		Iterator<Category> iteratorCats = cats.iterator();
 		while(iteratorCats.hasNext()){
 			cat = iteratorCats.next();
-			if(cat.isMainCat()) cats.remove(cat);
+			if(cat.isMainCat() && cat.getSubCategory().size() == 0) cats.remove(cat);
 		}
 		return cats;
 	}
@@ -79,6 +79,14 @@ public class CategoryServiceImpl implements CategoryService {
 	public void addSubCategory(Category category, Category subCategory) {
 		category.AddSubCategory(subCategory);
 		subCategory.setCategory(category);
+		this.catRepository.save(category);
+		this.catRepository.save(subCategory);
+	}
+
+	@Override
+	public void detach(Category category, Category subCategory) {
+		category.getSubCategory().remove(subCategory);
+		subCategory.setCategory(null);
 		this.catRepository.save(category);
 		this.catRepository.save(subCategory);
 	}

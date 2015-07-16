@@ -21,33 +21,15 @@
                                 <label class="col-sm-2 control-label" for="selectCategory">Category</label>
                                 <div class="col-xs-4">
                                 	<form:select id="selectCategory" name="subCategoryId" path="" multiple="single" class="form-control">
-                                		<c:set var="group" scope="page" value="''"/>
                                 		<c:forEach var="subCategory" items="${subCategories}">
                                 			<c:choose>
-                                				<c:when test="${group != subCategory.category.name}">
-             								    	<optgroup label="${subCategory.category.name}">
-             								    		<c:choose>
-             								    			<c:when test="${product.subcategory.name != subCategory.name}">
-             								    				<option value="${subCategory.id}">${subCategory.name}</option>
-             								    			</c:when>
-								    						<c:otherwise>
-								    							<option value="${subCategory.id}" selected>${subCategory.name}</option>
-								    						</c:otherwise>
-							    						</c:choose>
-										  			</optgroup>
-										  			<c:set var="group" scope="page" value="${subCategory.category.name}"/>
-                                				</c:when>
-                                				<c:otherwise>
-							    					<c:choose>
-           								    			<c:when test="${product.subcategory.name != subCategory.name}">
-           								    				<option value="${subCategory.id}">${subCategory.name}</option>
-           								    			</c:when>
-							    						<c:otherwise>
-							    							<option value="${subCategory.id}" selected>${subCategory.name}</option>
-							    						</c:otherwise>
-						    						</c:choose>
-                                				</c:otherwise>
-                                			</c:choose>
+   								    			<c:when test="${product.category.name != subCategory.name}">
+   								    				<option value="${subCategory.id}">${subCategory.name}</option>
+   								    			</c:when>
+					    						<c:otherwise>
+					    							<option value="${subCategory.id}" selected>${subCategory.name}</option>
+					    						</c:otherwise>
+				    						</c:choose>
 									  	</c:forEach>
                                 	</form:select>
                                 </div>

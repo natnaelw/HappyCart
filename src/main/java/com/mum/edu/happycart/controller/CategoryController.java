@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mum.edu.happycart.domain.Category;
+import com.mum.edu.happycart.mail.MailService;
 import com.mum.edu.happycart.service.CategoryService;
 
 @Controller
@@ -17,20 +18,45 @@ import com.mum.edu.happycart.service.CategoryService;
 public class CategoryController {
 	
 	@Autowired
-	private CategoryService catService;
+	private CategoryService categoryService;
+	
+	@Autowired
+	private MailService mailService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String categoryList(Model model, Category category){
 		model.addAttribute("category",category);
-		model.addAttribute("categories", catService.getAllCategory());
+		model.addAttribute("categories", categoryService.getAllCategory());
 		return "categoryCreate";
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public String categorySave(@ModelAttribute("category") Category newCategory, 
 							   RedirectAttributes redirectAttributes){
-		this.catService.addCategory(newCategory);
+		this.categoryService.addCategory(newCategory);
+		this.mailService.sendMail("happycartmart@gmail.com", "natnael.welday@gmail.com", "test only", "test only");
 		redirectAttributes.addFlashAttribute("message", "Category successfully created.");
+		return "redirect:/admin/category/";
+	}
+	
+	@RequestMapping(value="/delete", method=RequestMethod.GET)
+	public String deleteCategory(@RequestParam("id") int id,
+								RedirectAttributes redirectAttributes){
+		this.categoryService.deleteCategoryById(id);
+		redirectAttributes.addFlashAttribute("message", "Category successfully deleted.");
+		return "redirect:/admin/category/";
+	}
+	
+	@RequestMapping(value="/edit", method=RequestMethod.GET)
+	public String updateCategory(@RequestParam("id") int id, Model model){
+		model.addAttribute("category",this.categoryService.getCategoryById(id));
+		return "categoryCreate";
+	}
+	
+	@RequestMapping(value="/edit", method=RequestMethod.POST)
+	public String updateCategory(@ModelAttribute("category") Category newCategory,
+								RedirectAttributes redirectAttributes){
+		this.categoryService.updateCategory(newCategory);
 		return "redirect:/admin/category/";
 	}
 	
@@ -38,7 +64,7 @@ public class CategoryController {
 	public String categoryAssign(Model model, 
 								Category category){
 		model.addAttribute("category", category);
-		model.addAttribute("categories", catService.getAllCategory());
+		model.addAttribute("categories", categoryService.getAllCategory());
 		return "categoryAssign";
 	}
 	
@@ -46,14 +72,34 @@ public class CategoryController {
 	public String categoryAssign(@RequestParam("categoryId") int catId,
 								@RequestParam("subCategoryId") int subCatid,
 								RedirectAttributes redirectAttributes){
-		if(catId > 0 && subCatid >0  && (catId != subCatid)) {
-			Category category = this.catService.getCategoryById(catId);
-			Category subCategory = this.catService.getCategoryById(subCatid);
-			this.catService.addSubCategory(category, subCategory);
-			redirectAttributes.addFlashAttribute("message","Successfully adding.");
+
+		if(catId > 0 && subCatid > 0  && (catId != subCatid)) {
+			Category category = this.categoryService.getCategoryById(catId);
+			Category subCategory = this.categoryService.getCategoryById(subCatid);
+			
+			if(category.getCategory() == null || (category.getCategory() != null && category.getCategory().getId() != subCategory.getId())){
+				this.categoryService.addSubCategory(category, subCategory);
+				redirectAttributes.addFlashAttribute("message","Successfully added.");
+			}
+			else
+				redirectAttributes.addFlashAttribute("message","Invalid adding.");
 		}
 		else
-			redirectAttributes.addFlashAttribute("message","Adding failed.");
+			redirectAttributes.addFlashAttribute("message","Invalid adding.");
+		return "redirect:/admin/category/assign";
+	}
+	
+	@RequestMapping(value = "/detach", method = RequestMethod.GET)
+	public String categoryDetach(@RequestParam("id") int subCatid,
+								RedirectAttributes redirectAttributes){
+		Category subCategory = this.categoryService.getCategoryById(subCatid);
+		if(subCategory != null){
+			Category category = subCategory.getCategory();
+			this.categoryService.detach(category, subCategory);
+			redirectAttributes.addFlashAttribute("message","Successfully added.");
+		}
+		else
+			redirectAttributes.addFlashAttribute("message","Invalid detach.");
 		return "redirect:/admin/category/assign";
 	}
 }
