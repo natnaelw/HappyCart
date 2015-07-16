@@ -49,9 +49,26 @@
 		<property name="defaultLocale" value="en"/>
 	</bean>
 	
+	
 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
 		<property name="validationMessageSource" ref="messageSource" />
 	</bean>
 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	  <bean class="org.springframework.web.servlet.view.XmlViewResolver">
+        <property name="location" value="/WEB-INF/springconfig/webcontext/jasper-views.xml"/>
+        <property name="order" value="0"/>
+    </bean> 
+    
+    
+          <import resource="classpath*:/jasper-views.xml"/> 
+ 	
  	
 </beans>

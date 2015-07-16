@@ -6,6 +6,7 @@
 <li><a href="<spring:url value="/search/"/>">Search</a></li>
 <li><a href="<spring:url value="/products/"/>">Products</a></li>
 <li><a href="<spring:url value="/cart/"/>">Shopping Cart</a></li>
+<li><a href="<spring:url value="/report/pdf/"/>">Reports</a></li>
 <security:authorize access="hasRole('ROLE_ADMIN')">
 <li><a href="<spring:url value="/admin/category/"/>">Admin</a></li>
 </security:authorize>

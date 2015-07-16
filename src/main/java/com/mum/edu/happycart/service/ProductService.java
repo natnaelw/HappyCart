@@ -3,6 +3,7 @@ package com.mum.edu.happycart.service;
 import java.util.List;
 
 import com.mum.edu.happycart.domain.Product;
+import com.mum.edu.happycart.domain.SearchDto;
 
 
 
@@ -26,6 +27,9 @@ public interface ProductService {
 	public Product addProduct(Product product);
 	
 	public Product updateProduct(Product product);
+	
+	
+	public List<Product> findByFilter(SearchDto searchDto);
 	
 
 }
