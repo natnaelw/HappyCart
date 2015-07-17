@@ -28,9 +28,16 @@ public interface ProductService {
 	
 	public Product updateProduct(Product product);
 	
+	public List<Product> getProductsByCategory(Integer categoryID);
 	
 	public List<Product> findByFilter(SearchDto searchDto);
 	
 
+	
+
 	public void postProductById(long productId, String isPost);
+	
+	public List<Product> getProductsByUserId(long userId);
+	
+	public List<Product> getProductsByCategoryId(int categoryId);
 }

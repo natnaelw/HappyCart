@@ -4,12 +4,15 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class MyFinance {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="myfinance_id")
 	private long id;
 	private String creditCardNumber;
@@ -20,7 +23,16 @@ public class MyFinance {
 	private double vendorAmount;
 	private double happyCartAmount;
 	private double tax;
+	private String productname;
 	
+
+
+	public String getProductname() {
+		return productname;
+	}
+	public void setProductname(String productname) {
+		this.productname = productname;
+	}
 	public String getCreditCardNumber() {
 		return creditCardNumber;
 	}

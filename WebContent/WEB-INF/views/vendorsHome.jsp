@@ -9,9 +9,9 @@
 </head>
 <body>
 <section>
-<p align="right">
- <a href="<spring:url  value="/doLogout" />" class="btn btn-danger btn-mini pull-right">Logout</a>	
-</p>
+<!-- <p align="right"> -->
+<%--  <a href="<spring:url  value="/doLogout" />" class="btn btn-danger btn-mini pull-right">Logout</a>	 --%>
+<!-- </p> -->
  <p> <security:authorize access="isAuthenticated()">
   					Welcome Mr. <security:authentication property="principal.username" />
 				</security:authorize>

@@ -103,13 +103,28 @@ public class ProductServiceImpl implements ProductService {
 	
 	public List<Product> findByFilter(SearchDto filterElements) {
 		
-		List<Product> p = new ArrayList<Product>();
 		
-		return p;
-//		return productRepository.findByFilter(
-//				Long.parseLong(filterElements.getCategory()),
-//				filterElements.getItemCondition(),
-//				Double.parseDouble(filterElements.getPrice()));
+		return productRepository.findByFilter(
+				Integer.parseInt(filterElements.getCategory()),
+				Double.parseDouble(filterElements.getPrice()));
+	}
+
+
+
+  public List<Product> getProductsByCategory(Integer categoryID) {
+	
+	return productRepository.findItemsByCategory(categoryID);
+   }
+	
+  @Override
+	public List<Product> getProductsByUserId(long userId) {
+		return this.productRepository.getProductsByUserId(userId);
+	}
+
+
+	@Override
+	public List<Product> getProductsByCategoryId(int categoryId) {
+		return this.productRepository.getProductsByCategoryId(categoryId);
 	}
 	
 }

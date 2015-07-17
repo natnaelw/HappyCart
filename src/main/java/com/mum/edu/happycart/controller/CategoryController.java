@@ -12,7 +12,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.mum.edu.happycart.domain.Category;
 import com.mum.edu.happycart.mail.MailService;
 import com.mum.edu.happycart.service.CategoryService;
-
+/**
+ * 
+ * @author Ketia
+ *
+ */
 @Controller
 @RequestMapping("/admin/category")
 public class CategoryController {
@@ -20,13 +24,14 @@ public class CategoryController {
 	@Autowired
 	private CategoryService categoryService;
 	
-	@Autowired
-	private MailService mailService;
+//	@Autowired
+//	private MailService mailService;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String categoryList(Model model, Category category){
 		model.addAttribute("category",category);
 		model.addAttribute("categories", categoryService.getAllCategory());
+		model.addAttribute("message", "N");
 		return "categoryCreate";
 	}
 	
@@ -34,7 +39,7 @@ public class CategoryController {
 	public String categorySave(@ModelAttribute("category") Category newCategory, 
 							   RedirectAttributes redirectAttributes){
 		this.categoryService.addCategory(newCategory);
-		this.mailService.sendMail("happycartmart@gmail.com", "natnael.welday@gmail.com", "test only", "test only");
+	//	this.mailService.sendMail("happycartmart@gmail.com", "natnael.welday@gmail.com", "test only", "test only");
 		redirectAttributes.addFlashAttribute("message", "Category successfully created.");
 		return "redirect:/admin/category/";
 	}
@@ -42,8 +47,13 @@ public class CategoryController {
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
 	public String deleteCategory(@RequestParam("id") int id,
 								RedirectAttributes redirectAttributes){
-		this.categoryService.deleteCategoryById(id);
-		redirectAttributes.addFlashAttribute("message", "Category successfully deleted.");
+		Category category = this.categoryService.getCategoryById(id);
+		if(category.getProducts().size() <= 0 &&  category.getSubCategory().size() <= 0){
+			this.categoryService.deleteCategoryById(id);
+			redirectAttributes.addFlashAttribute("message", "Category successfully deleted.");
+		}
+		else
+			redirectAttributes.addFlashAttribute("message", "This category is related to products.");
 		return "redirect:/admin/category/";
 	}
 	

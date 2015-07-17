@@ -49,6 +49,10 @@ public class UserServiceImpl implements UserService{
 
 		return loggedInUser;
 	}
+	
+	public User getUserByID(Long id){
+		return userRepository.findOne(id);
+	}
 
 
 }

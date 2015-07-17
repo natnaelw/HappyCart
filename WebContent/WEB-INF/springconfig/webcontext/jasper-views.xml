@@ -13,7 +13,7 @@
      
     <bean id="pdfReport"
           class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
-          p:url="/WEB-INF/views/test.jrxml"
+          p:url="/WEB-INF/views/ProductsReport1.jrxml"
           p:reportDataKey="datasource"/>
   
 </beans>

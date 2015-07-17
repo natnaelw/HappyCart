@@ -36,11 +36,28 @@ public class GlobalHandler {
 	@Autowired
 	AppSettingsService appSettingsService;
 
+	@ModelAttribute("imagePath")
+	public String getImagePath(Model model,
+								HttpServletRequest request){
+		String rootDirectory = request.getSession().getServletContext().getRealPath("/").replace("\\", "/") + "resources/images/";
+		return rootDirectory;
+	}
+	
 	@ModelAttribute("categories")
 	public List<Category> intializeModel(Model model) {
 		return categoryService.getAllCategory();
 	}
 
+	@ModelAttribute("mainCategories")
+	public List<Category> initializeModelMainCategory(Model model){
+		return this.categoryService.getAllMainCategory();
+	}
+	
+	@ModelAttribute("subCategories")
+	public List<Category> initializeModelSubCategory(Model model){
+		return this.categoryService.getAllSubCategory();
+	}
+	
 	@ModelAttribute("products")
 	public List<Product> intializeModelProduct(Model model) {
 		return productService.findAll();

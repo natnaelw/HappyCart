@@ -9,7 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
+/**
+ * 
+ * @author Ketia
+ *
+ */
 @Entity
 public class Category {
 	@Id
@@ -23,7 +27,7 @@ public class Category {
 	@OneToMany(mappedBy="category" , fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private List<Category> subCategory;
 	
-	@OneToMany(mappedBy="category", orphanRemoval = false )
+	@OneToMany(mappedBy="category", orphanRemoval = false, fetch = FetchType.EAGER)
 	private List<Product> products;
 	
 	public int getId() {

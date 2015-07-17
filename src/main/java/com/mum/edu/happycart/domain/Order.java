@@ -35,7 +35,7 @@ public class Order implements Serializable{
 	private List<OrderDetail> orderDetail;
 	
 	  @OneToOne (cascade=CascadeType.ALL)
-	  @JoinColumn(name="user_id", unique= true, nullable=true, insertable=true, updatable=true)
+	  @JoinColumn(name="user_id", unique= false, nullable=true, insertable=true, updatable=true)
 	  private User user;
 	
 	public void add(OrderDetail orderDetail){

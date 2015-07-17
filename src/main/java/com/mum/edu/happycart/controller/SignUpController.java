@@ -40,7 +40,7 @@ public class SignUpController {
 	CreditCardTransactionService ccTransactionService;
 
 	User tempUser = new User();
-
+	
 	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signUp(@ModelAttribute("newUser") User user) {
 		return "signup";

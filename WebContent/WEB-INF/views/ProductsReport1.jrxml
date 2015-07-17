@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ProductsReport1" pageWidth="595" pageHeight="842" columnWidth="520" leftMargin="45" rightMargin="30" topMargin="30" bottomMargin="30" isFloatColumnFooter="true">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/Eritas/TaxpayersByZoba"/>
+	<property name="ireport.jasperserver.url" value="http://localhost:8081/jasperserver/services/repository"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent"/>
+	<queryString>
+		<![CDATA[SELECT  happycart.myfinance.productname,happycart.myfinance.amountSpent,happycart.myfinance.happyCartAmount , happycart.myfinance.vendorAmount,happycart.myfinance.tax FROM happycart.myfinance
+ORDER BY  happycart.myfinance.productname  ASC]]>
+	</queryString>
+	<field name="productname" class="java.lang.String"/>
+	<field name="amountSpent" class="java.lang.Double"/>
+	<field name="happyCartAmount" class="java.lang.Double"/>
+	<field name="vendorAmount" class="java.lang.Double"/>
+	<field name="tax" class="java.lang.Double"/>
+	<variable name="Grand Total" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{happyCartAmount}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="113" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="1" y="95" width="260" height="18"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Report By Products]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="93" width="520" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="91" width="520" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+				</graphicElement>
+			</line>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="345" y="0" width="175" height="13"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="170" y="58" width="214" height="17"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reports]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="44" width="214" height="17"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[HappyCart]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="19" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="18" width="520" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="520" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="2" y="2" width="62" height="16"/>
+				<textElement/>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="85" y="1" width="96" height="17"/>
+				<textElement/>
+				<text><![CDATA[AmountSpent]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="181" y="1" width="96" height="17"/>
+				<textElement/>
+				<text><![CDATA[VendorAmount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="293" y="1" width="96" height="17"/>
+				<textElement/>
+				<text><![CDATA[Tax]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="436" y="1" width="83" height="17"/>
+				<textElement/>
+				<text><![CDATA[HappyCartAmount]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="535" height="15"/>
+				<textField>
+					<reportElement x="181" y="0" width="95" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{vendorAmount}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="293" y="0" width="95" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{tax}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="424" y="0" width="95" height="15"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$F{happyCartAmount}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="91" y="0" width="95" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{amountSpent}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="1" y="0" width="95" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{productname}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="15">
+			<staticText>
+				<reportElement x="372" y="0" width="60" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Grand Total]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="¤ #,##0.000">
+				<reportElement x="346" y="0" width="173" height="15"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Serif" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Grand Total}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="371" y="0" width="148" height="1"/>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="22" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="3" width="535" height="18" forecolor="#FFFFFF" backcolor="#FFFFFF"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="479" y="0" width="40" height="18" forecolor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="399" y="0" width="80" height="18" forecolor="#000000"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement style="Column header" x="0" y="0" width="82" height="18" forecolor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="false"/>
+					</textElement>
+					<text><![CDATA[HappyCart v-1.0.0]]></text>
+				</staticText>
+			</frame>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="519" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="2" width="519" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineColor="#000000"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

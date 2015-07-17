@@ -3,7 +3,11 @@ package com.mum.edu.happycart.service;
 import java.util.List;
 
 import com.mum.edu.happycart.domain.Category;
-
+/**
+ * 
+ * @author Ketia
+ *
+ */
 public interface CategoryService  {
 	public Category addCategory(Category cat);
 	public Category getCategoryById(int id);

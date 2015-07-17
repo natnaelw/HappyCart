@@ -70,11 +70,11 @@
 		<put-attribute name="body" value="/WEB-INF/views/vendorHome.jsp" />
 	</definition>
 	
-	<definition name="vendorProduct" extends="baseLayout">
-		<put-attribute name="title" value="Product" />
-		<put-attribute name="heading" value="VendorProduct" />
-		<put-attribute name="body" value="/WEB-INF/views/vendorProduct.jsp" />
-	</definition>
+<!-- 	<definition name="vendorProduct" extends="baseLayout"> -->
+<!-- 		<put-attribute name="title" value="Product" /> -->
+<!-- 		<put-attribute name="heading" value="VendorProduct" /> -->
+<!-- 		<put-attribute name="body" value="/WEB-INF/views/vendorProduct.jsp" /> -->
+<!-- 	</definition> -->
 	
 	<definition name="admin" extends="baseLayout">
 		<put-attribute name="title" value="Admin" />
@@ -112,17 +112,60 @@
 		<put-attribute name="body" value="/WEB-INF/views/success.jsp" />
 	</definition>
 	
-		<definition name="productEdit" extends="baseLayout">
-		<put-attribute name="title" value="Editproduct" />
-		<put-attribute name="heading" value="Product" />
-		<put-attribute name="body" value="/WEB-INF/views/vendorProductEdit.jsp" />
-	</definition>
+<!-- 		<definition name="productEdit" extends="baseLayout"> -->
+<!-- 		<put-attribute name="title" value="Editproduct" /> -->
+<!-- 		<put-attribute name="heading" value="Product" /> -->
+<!-- 		<put-attribute name="body" value="/WEB-INF/views/vendorProductEdit.jsp" /> -->
+<!-- 	</definition> -->
 	
 		
 	<definition name="categoryAdd" extends="baseLayout">
 		<put-attribute name="title" value="Category" />
 		<put-attribute name="heading" value="Category" />
 		<put-attribute name="body" value="/WEB-INF/views/categoryCreate.jsp" />
+	</definition>
+	
+	<definition name="search" extends="baseLayout">
+		<put-attribute name="title" value="Search" />
+		<put-attribute name="heading" value="Search" />
+		<put-attribute name="body" value="/WEB-INF/views/search.jsp" />
+	</definition>
+	
+	<definition name="searchedItems" extends="baseLayout">
+		<put-attribute name="title" value="Search" />
+		<put-attribute name="heading" value="Search" />
+		<put-attribute name="body" value="/WEB-INF/views/searchedItems.jsp" />
+	</definition>
+
+
+<definition name="categoryCreate" extends="baseLayout">
+		<put-attribute name="title" value="Category" />
+		<put-attribute name="heading" value="Category" />
+		<put-attribute name="body" value="/WEB-INF/views/categoryCreate.jsp" />
+	</definition>
+	
+	<definition name="categoryAssign" extends="baseLayout">
+		<put-attribute name="title" value="Category" />
+		<put-attribute name="heading" value="Category" />
+		<put-attribute name="body" value="/WEB-INF/views/categoryAssign.jsp" />
+	</definition>
+	
+	<definition name="admin" extends="baseLayout">
+		<put-attribute name="title" value="Admin" />
+		<put-attribute name="heading" value="Admin" />
+		<put-attribute name="body" value="/WEB-INF/views/admin.jsp" />
+	</definition>
+	
+	<definition name="productCreate" extends="baseLayout">
+		<put-attribute name="title" value="Product" />
+		<put-attribute name="heading" value="Product" />
+		<put-attribute name="body" value="/WEB-INF/views/vendorProduct.jsp" />
+	</definition>
+
+	<definition name="productEdit" extends="baseLayout">
+		<put-attribute name="title" value="Product" />
+		<put-attribute name="heading" value="Product" />
+		<put-attribute name="body" value="/WEB-INF/views/vendorProductEdit.jsp" />
 	</definition>
 
 </tiles-definitions>

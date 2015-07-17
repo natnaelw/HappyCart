@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
 <html>
 <head>
@@ -10,13 +11,7 @@
 	<title>Welcome</title>
 </head>
 <body>
-	<section class="container">
-		<div class="jumbotron">
-			<h1>Products</h1>
-			<p>All the available products in our store</p>
-			<a href="<spring:url value="/vendor/upload"/>" class="btn btn-link">Add new product</a>
-		</div>
-	</section>
+	Welcome Mr. <security:authentication property="principal.username" />
 	<section class="container">
 	    <div class="panel panel-default">
 	    	<div class="panel-heading"><h3>Product List</h3>
@@ -39,7 +34,9 @@
 
                 <c:forEach var="product" items="${products}" varStatus="status">
                     <tr>
-                    	<td><img src='<c:url value="/resources/images/${product.id}.png" />' class="img-rounded" alt="Cinque Terre" width="30" height="30"/></td>
+                    	<!--<c:out value="${imagePath}${product.id}.png"></c:out>-->
+                    	<!-- <td><img src='<c:url value="${imagePath}${product.id}.png" />' class="img-rounded" alt="Cinque Terre" width="30" height="30"/></td> -->
+                    	<td><a href=" <spring:url value="/products/product/${item.id}" /> "><img src="<spring:url value="${imagePath}${product.id}.png" />" class="img-rounded" alt="Cinque Terre" width="150" height="150"/> </a></td>
                         <td><c:out value="${status.count}"/></td>
                         <td>${product.name}</td>
                         <td>${product.manufacturer}</td>
@@ -68,6 +65,7 @@
                 </c:forEach>
                 <tbody>
            </table>
+           <a href="<spring:url value="/vendor/upload"/>" class="btn btn-link">Add new product</a>
     	</div>
     	</div>
 	</section>

@@ -46,10 +46,6 @@ public class CartController {
 		}
 		model.addAttribute("cart", cart);
 		
-		System.out.println("CARTController"  + cart.getCartItems());
-		for (String x : cart.getCartItems().keySet()) {
-			System.out.println("%%%%"+x);
-		}
 		return "cart";
 	}
 	
@@ -62,9 +58,6 @@ public class CartController {
 			@RequestParam("mode") String mode, Model model,
 			HttpServletRequest request) {
 		
-		System.out.println("---Request Reached Cart Controller---");
-
-
 		String cartId = request.getSession(true).getId();
 		Cart cart = cartService.read(cartId);
 		if (cart == null) {
@@ -77,7 +70,6 @@ public class CartController {
 		CartItem item = new CartItem(product);
 		//item.setQuantity(quantity);
 		cart.addCartItem(item, mode);
-		System.out.println("******CartId" + cartId);
 		cartService.update(cartId, cart);
 
 	}
