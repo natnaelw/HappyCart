@@ -59,12 +59,13 @@ public class VendorController {
 		String[] subCategoryIds = request.getParameterValues("subCategoryId");
 		if(subCategoryIds.length > 0) newProduct.setCategory(categoryService.getCategoryById(Integer.parseInt(subCategoryIds[0])));
 		MultipartFile productImage = newProduct.getProductImage();
-		 
+		System.out.println("%%%%%%%%%%"+rootDirectory);
 		//String rootDirectory = request.getSession().getServletContext().getRealPath("/");
 		if (productImage!=null && !productImage.isEmpty()) {
 			try {
 				imagePath =  rootDirectory+"\\resources\\images\\"+ newProduct.getId()+ ".png";
 				productImage.transferTo(new File(imagePath));
+				System.out.println("%%%%%%%%%%"+imagePath);
 			} catch (Exception e) {
 				throw new RuntimeException("Product Image saving failed",e);
 			}

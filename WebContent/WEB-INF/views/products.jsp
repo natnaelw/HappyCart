@@ -26,8 +26,11 @@
 						<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
 							<div class="thumbnail">
 								<div class= "caption">
+								  <img src="<c:url value="/resources/images/${item.name}.png"></c:url>" alt="image"  style = "width:100%"/>
+           <a href=" <spring:url value="/products/product/${item.id}" /> "><img
+					src="<spring:url value="/resources/images/${item.productImage}" />" /> </a>
 									<!-- <img src='<c:url value="${imagePath}${item.id}.png" />' class="img-rounded" alt="Cinque Terre" width="100" height="100"/> -->
-									<a href=" <spring:url value="/products/product/${item.id}" /> "><img src="<spring:url value="${imagePath}${item.id}.png" />" class="img-rounded" alt="Cinque Terre" width="150" height="150"/> </a>
+									<a href=" <spring:url value="${imagePath}${item.id}.png" /> "><img src="<spring:url value="${imagePath}${item.id}.png" />" class="img-rounded" alt="Cinque Terre" width="150" height="150"/> </a>
 									<h4>${item.name}</h4>
 									<p>${item.manufacturer}</p>
 									<p>${item.description}</p>

@@ -85,10 +85,10 @@
 								<div class="col-sm-6">
 									<img
 										src="<c:url value="/resources/images/home/HCLogo1.jpg"></c:url>"
-										class="girl img-responsive" alt="" /> 
-<!-- 										<img -->
-<%-- 										src="<c:url value="/resources/images/home/pricing.png"></c:url>" --%>
-<!-- 										class="pricing" alt="" /> -->
+										class="girl img-responsive" alt="" />
+									<!-- 										<img -->
+									<%-- 										src="<c:url value="/resources/images/home/pricing.png"></c:url>" --%>
+									<!-- 										class="pricing" alt="" /> -->
 								</div>
 							</div>
 							<div class="item">

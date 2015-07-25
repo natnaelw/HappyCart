@@ -28,6 +28,6 @@ public class LoginController {
 	
 	@RequestMapping(value="/vendorsHome", method = RequestMethod.GET)
 	public String vendorHome(Model model) {
- 		return "vendorsHome";
+ 		return "vendorHome";
  	}
 }

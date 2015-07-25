@@ -13,7 +13,7 @@
 	<body>
 		<section class="container">
 			<div class="panel panel-default">
-	       	<div class="panel-heading"><h3>Category List</h3></div>
+	       	<div class="panel-heading"><h3>Credit Card Details</h3></div>
 	        	<div class="panel-body"> 
 					<c:choose>
 						<c:when test="${not empty errorMessage}">Error(s)!</c:when>
